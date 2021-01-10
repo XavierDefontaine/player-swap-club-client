@@ -1,16 +1,19 @@
 import Nav from "react-bootstrap/Nav";
-import React, { useEffect, useState } from "react";
 import NavbarCollapse from "react-bootstrap/esm/NavbarCollapse";
 import Navbar from "react-bootstrap/Navbar";
+import { LinkContainer } from "react-router-bootstrap";
+import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 import { AppContext } from "./libs/contextLib";
 import { Auth } from "aws-amplify";
 import "./App.css";
 import Routes from "./Routes"; 
-import { LinkContainer } from "react-router-bootstrap";
+
 
 function App() {
   const [isAuthenticated, userHasAuthenticated] = useState(false);
   const [isAuthenticating, setIsAuthenticating] = useState(true);
+  const history = useHistory();
 
   useEffect(() => {
     onLoad();
@@ -26,13 +29,13 @@ function App() {
         console.log(e);
       }
     }
-  
     setIsAuthenticating(false);
   }
   
   async function handleLogout(){
     await Auth.signOut();
     userHasAuthenticated(false);
+    history.push("/login")
   }
 
   return (
