@@ -1,8 +1,9 @@
 import React from "react";
+import { Switch, Route } from "react-router-dom";
 import Home from "./containers/Home";
 import NotFound from  "./containers/NotFound";
 import Login from "./containers/Login";
-import { Switch, Route } from "react-router-dom";
+import Signup from "./containers/Signup";
 
 
 export default function Routes() {
@@ -13,6 +14,9 @@ export default function Routes() {
       </Route>
       <Route exact path="/login">
         <Login />
+      </Route>
+      <Route exact path="/signup">
+        <Signup />
       </Route>
       <Route>
         <NotFound />
